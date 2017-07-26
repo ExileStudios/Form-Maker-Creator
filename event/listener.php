@@ -180,13 +180,11 @@ class listener implements EventSubscriberInterface
 				$mandatory = "";
 			}
 
-			$temp_name = $row['name'];
-
-			$row['name'] = str_replace(' ', '_', $row['name']);
+			$field_name = str_replace(' ', '_', $row['name']);
 
 			// make things even easier to read //
-			$name = "name='templatefield_{$row['name']}'";
-			$id = "id='templatefield_{$row['name']}'";
+			$name = "name='templatefield_{$field_name}'";
+			$id = "id='templatefield_{$field_name}'";
 			$placeholder = "placeholder='{$row['hint']}' ";
 			$tabindex = "tabindex='{$row['ndx_order']}' ";
 
@@ -271,6 +269,7 @@ class listener implements EventSubscriberInterface
 
 	private function grab_form_data($forum_id)
 	{
+
 		$ret = $appform_post = $last_checked = $temp = '';
 		$name_length_max = $file_count = 0;
 		$form_data = $names = array();
@@ -321,8 +320,8 @@ class listener implements EventSubscriberInterface
 		foreach ($form_data as $row)
 		{
 			$name = "";
-			$row['name'] = str_replace(' ', '_', $row['name']);
-			$name = "templatefield_" . $row['name'];
+			$field_name = str_replace(' ', '_', $row['name']);
+			$name = "templatefield_" . $field_name;
 
 			if (isset($row['type']))
 			{
